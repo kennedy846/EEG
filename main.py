@@ -4,7 +4,7 @@ import scipy.io.wavfile as waves
 import csv
 import pandas as pd
 
-file = 'TimBrain_VisualCortex_BYB_Recording.wav'
+file = 'Noah_BYB_Recording_2022-01-10_09.47.18.wav'
 fs, data = waves.read(file)
 
 length_data=np.shape(data)
@@ -19,7 +19,7 @@ plt.ylim(0,90)
 plt.colorbar(label= "Power/Frequency")
 plt.ylabel('Frequency [Hz]')
 plt.xlabel('Time [s]')
-plt.show()
+plt.savefig("Figure 1")
 
 matrixf=np.array(f).T
 np.savetxt('Frequencies.csv', matrixf)
@@ -59,7 +59,7 @@ y=smoothTriangle(AlphaRange, 100)
 plt.plot(t, y)
 plt.xlabel('Time [s]')
 plt.xlim(0,max(t))
-
+plt.savefig("Figure 2")
 datosy=np.asarray(y)
 datosyt=np.array(
         [
@@ -77,7 +77,7 @@ df.to_csv("datosyt.csv", index=False)
 
 
 
-tg=np.array([4.2552,14.9426, 23.2801,36.0951, 45.4738,59.3751, 72.0337,85.0831, max(t)+1])
+tg=np.array([30,60,90,120,150,180,210,240, max(t)+1])
 
 length_t=np.shape(t)
 l_row_t=length_t[0]
@@ -100,6 +100,7 @@ plt.figure('DataAnalysis')
 plt.boxplot([eyesopen, eyesclosed], sym = 'ko', whis = 1.5)
 plt.xticks([1,2], ['Eyes open', 'Eyes closed'], size = 'small', color = 'k')
 plt.ylabel('AlphaPower')
+plt.savefig("Figure 3")
 
 meanopen=np.mean(eyesopen)
 meanclosed=np.mean(eyesclosed)
